@@ -1,17 +1,17 @@
-export type RequestStatusType = 'failed' | 'idle' | 'loading' | 'succeeded'
+export type RequestStatus = 'failed' | 'idle' | 'loading' | 'succeeded'
 
-export type FieldErrorType = {
+export type FieldError = {
   error: string
   field: string
 }
-export type BaseResponseType<D = {}> = {
+export type BaseResponse<D = {}> = {
   data: D
-  fieldsErrors: FieldErrorType[]
+  fieldsErrors: FieldError[]
   messages: string[]
   resultCode: number
 }
 
-export type ErrorType = {
+export type Error = {
   error: string
   messages: string[]
   statusCode: number

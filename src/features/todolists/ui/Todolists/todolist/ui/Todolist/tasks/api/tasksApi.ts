@@ -1,7 +1,7 @@
 import { instance } from '@/common/api/instance'
-import { BaseResponseType } from '@/common/types/types'
+import { BaseResponse } from '@/common/types/types'
 import {
-  Task,
+  TaskType,
   UpdateTaskModel,
   getTasksResponse,
 } from '@/features/todolists/ui/Todolists/todolist/ui/Todolist/tasks/tasks.types'
@@ -10,22 +10,22 @@ import { AxiosResponse } from 'axios'
 export const tasksApi = {
   createTask(todolistId: string, title: string) {
     return instance.post<
-      BaseResponseType<{ item: Task }>,
-      AxiosResponse<BaseResponseType<{ item: Task }>>,
+      BaseResponse<{ item: TaskType }>,
+      AxiosResponse<BaseResponse<{ item: TaskType }>>,
       { title: string }
     >(`/todo-lists/${todolistId}/tasks`, { title })
   },
   deleteTask(todolistId: string, taskId: string) {
-    return instance.delete<BaseResponseType>(`/todo-lists/${todolistId}/tasks/${taskId}`)
+    return instance.delete<BaseResponse>(`/todo-lists/${todolistId}/tasks/${taskId}`)
   },
   getTasks(todolistId: string) {
     return instance.get<getTasksResponse>(`/todo-lists/${todolistId}/tasks`)
   },
-  updateTask(todolistId: string, taskId: string, model: UpdateTaskModel) {
+  updateTask(updateModel: UpdateTaskModel, taskId: string, todolistId: string) {
     return instance.put<
-      BaseResponseType<{ item: Task }>,
-      AxiosResponse<BaseResponseType<{ item: Task }>>,
+      BaseResponse<{ item: TaskType }>,
+      AxiosResponse<BaseResponse<{ item: TaskType }>>,
       UpdateTaskModel
-    >(`/todo-lists/${todolistId}/tasks/${taskId}`, model)
+    >(`/todo-lists/${todolistId}/tasks/${taskId}`, updateModel)
   },
 }

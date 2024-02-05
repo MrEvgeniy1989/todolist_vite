@@ -1,0 +1,23 @@
+.tasks {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.tasks ul {
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.tasksSpan {
+  place-self: center center;
+
+  width: 75%;
+  margin: 0 auto;
+  padding: 5px;
+
+  color: #ff3636;
+  text-align: center;
+
+  border: 1px solid #ff3636;
+}

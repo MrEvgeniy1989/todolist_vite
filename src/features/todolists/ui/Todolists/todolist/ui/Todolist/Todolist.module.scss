@@ -1,3 +1,10 @@
+.todolist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 370px;
+}
+
 .addItemForm {
   display: flex;
   justify-content: space-between;

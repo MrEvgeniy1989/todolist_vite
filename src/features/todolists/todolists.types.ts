@@ -1,4 +1,4 @@
-import { RequestStatusType } from '@/common/types/types'
+import { RequestStatus } from '@/common/types/types'
 
 export type Todolist = {
   addedDate: string
@@ -8,6 +8,6 @@ export type Todolist = {
 }
 export type FilterValues = 'active' | 'all' | 'completed'
 export type TodolistDomain = Todolist & {
-  entityStatus: RequestStatusType
+  entityStatus: RequestStatus
   filter: FilterValues
 }
