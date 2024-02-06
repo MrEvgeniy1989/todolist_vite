@@ -1,3 +1,4 @@
+import { clearData } from '@/common/actions/commonActions'
 import { ResultCode } from '@/common/enums/enums'
 import { createAppAsyncThunk } from '@/common/utils/createAppAsyncThunk'
 import { todolistsThunks } from '@/features/todolists/model/todolistsSlice'
@@ -46,6 +47,9 @@ const slice: Slice<Tasks> = createSlice({
         if (index !== -1) {
           state[action.payload.todolistId][index] = action.payload.task
         }
+      })
+      .addCase(clearData, () => {
+        return {}
       }),
   initialState: {} as Tasks,
   name: 'tasks',

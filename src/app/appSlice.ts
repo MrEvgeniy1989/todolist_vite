@@ -1,4 +1,7 @@
 import { RequestStatus } from '@/common/types/types'
+import { authThunks } from '@/features/auth/model/authSlice'
+import { todolistsThunks } from '@/features/todolists/model/todolistsSlice'
+import { tasksThunks } from '@/features/todolists/ui/Todolists/todolist/ui/Todolist/tasks/model/tasksSlice'
 import {
   AnyAction,
   PayloadAction,
@@ -21,13 +24,14 @@ const slice = createSlice({
         state.appStatus = 'failed'
 
         if (action.payload) {
-          // if (
-          //   action.type === todolistsActions.addTodolist.rejected.type ||
-          //   action.type === tasksThunks.addTask.rejected.type ||
-          //   action.type === authThunks.me.rejected.type
-          // ) {
-          //   return
-          // }
+          if (
+            action.type === todolistsThunks.addTodolist.rejected.type ||
+            action.type === tasksThunks.addTask.rejected.type ||
+            action.type === authThunks.me.rejected.type ||
+            action.type === authThunks.login.rejected.type
+          ) {
+            return
+          }
 
           state.error = action.payload.messages[0]
         } else {
@@ -43,6 +47,9 @@ const slice = createSlice({
   reducers: {
     setAppError: (state, action: PayloadAction<{ error: null | string }>) => {
       state.error = action.payload.error
+    },
+    setInitialized: (state, action: PayloadAction<{ isInitialized: boolean }>) => {
+      state.isInitialized = action.payload.isInitialized
     },
   },
 })

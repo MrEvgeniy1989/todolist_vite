@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 
 import { AddItemForm } from '@/common/components/AddItemForm/AddItemForm'
 import { useAppDispatch } from '@/common/hooks/useAppDispatch'
 import { useAppSelector } from '@/common/hooks/useAppSelector'
+import { selectIsLoggedIn } from '@/features/auth/model/authSelectors'
 import { selectTodolists } from '@/features/todolists/model/todolistsSelectors'
 import { todolistsThunks } from '@/features/todolists/model/todolistsSlice'
 import { Todolist } from '@/features/todolists/ui/Todolists/todolist/ui/Todolist/Todolist'
@@ -11,6 +13,7 @@ import Paper from '@mui/material/Paper'
 
 export const Todolists = () => {
   const dispatch = useAppDispatch()
+  const isLoggedIn = useAppSelector(selectIsLoggedIn)
   const todolists = useAppSelector(selectTodolists)
 
   useEffect(() => {
@@ -19,6 +22,10 @@ export const Todolists = () => {
 
   const addTodolist = (title: string) => {
     dispatch(todolistsThunks.addTodolist({ title }))
+  }
+
+  if (!isLoggedIn) {
+    return <Navigate to={'/login'} />
   }
 
   return (
