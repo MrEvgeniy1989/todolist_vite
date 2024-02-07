@@ -12,10 +12,11 @@ import IconButton from '@mui/material/IconButton'
 import s from './Task.module.scss'
 
 type Props = {
+  disabled: boolean
   task: TaskType
 }
 
-export const Task = ({ task }: Props) => {
+export const Task = ({ disabled, task }: Props) => {
   const dispatch = useAppDispatch()
 
   const deleteTaskHandler = () =>
@@ -42,14 +43,19 @@ export const Task = ({ task }: Props) => {
   return (
     <li className={s.task}>
       <div>
-        <Checkbox checked={task.status !== TaskStatuses.New} onChange={changeTaskStatusHandler} />
+        <Checkbox
+          checked={task.status !== TaskStatuses.New}
+          disabled={disabled}
+          onChange={changeTaskStatusHandler}
+        />
         <EditableSpan
           callback={changeTaskTitleHandler}
-          className={task.status !== TaskStatuses.New ? s.taskDone : ''}
+          classNameForSpan={task.status !== TaskStatuses.New ? s.taskDone : ''}
+          disabled={disabled}
           title={task.title}
         />
       </div>
-      <IconButton onClick={deleteTaskHandler}>
+      <IconButton disabled={disabled} onClick={deleteTaskHandler}>
         <Delete />
       </IconButton>
     </li>

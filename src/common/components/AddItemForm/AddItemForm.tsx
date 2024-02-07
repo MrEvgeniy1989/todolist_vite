@@ -68,6 +68,7 @@ export const AddItemForm = ({
       />
       <Button
         className={classNameButton}
+        disabled={disabled}
         onClick={addItemHandler}
         style={buttonStyle}
         variant={'contained'}

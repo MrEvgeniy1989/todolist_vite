@@ -2,13 +2,15 @@ import { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react'
 
 import TextField from '@mui/material/TextField'
 
+import s from './EditableSpan.module.scss'
 type Props = {
   callback: (title: string) => void
-  className?: string
+  classNameForSpan?: string
+  disabled: boolean
   title: string
 }
 
-export const EditableSpan = ({ callback, className, title }: Props) => {
+export const EditableSpan = ({ callback, classNameForSpan, disabled, title }: Props) => {
   const [edit, setEdit] = useState(false)
   const [newTitle, setNewTitle] = useState(title)
 
@@ -46,7 +48,10 @@ export const EditableSpan = ({ callback, className, title }: Props) => {
       variant={'standard'}
     />
   ) : (
-    <span className={className} onDoubleClick={() => setEdit(true)}>
+    <span
+      className={disabled ? classNameForSpan + ' ' + s.disabled : classNameForSpan}
+      onDoubleClick={() => setEdit(true)}
+    >
       {title}
     </span>
   )
