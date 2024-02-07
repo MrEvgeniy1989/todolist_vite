@@ -7,7 +7,7 @@ import { ErrorSnackbar } from '@/common/components/ErrorSnackbar/ErrorSnackbar'
 import { useAppDispatch } from '@/common/hooks/useAppDispatch'
 import { useAppSelector } from '@/common/hooks/useAppSelector'
 import { authThunks } from '@/features/auth/model/authSlice'
-import { Login } from '@/features/auth/ui/Login/Login'
+import { LoginWithReactHookForm } from '@/features/auth/ui/Login/LoginWithReactHookForm'
 import { Todolists } from '@/features/todolists/ui/Todolists/Todolists'
 import CircularProgress from '@mui/material/CircularProgress'
 import Container from '@mui/material/Container'
@@ -45,7 +45,7 @@ export const App = () => {
       <Container fixed>
         <Routes>
           <Route element={<Todolists />} path={'/'} />
-          <Route element={<Login />} path={'/login'} />
+          <Route element={<LoginWithReactHookForm />} path={'/login'} />
           <Route element={<div>Error 404</div>} path={'/404'} />
           <Route element={<Navigate to={'/404'} />} path={'*'} />
         </Routes>

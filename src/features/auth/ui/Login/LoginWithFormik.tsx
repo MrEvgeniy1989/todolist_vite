@@ -12,7 +12,7 @@ import FormLabel from '@mui/material/FormLabel'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 
-export const Login = () => {
+export const LoginWithFormik = () => {
   const { formik } = useLogin()
   const isLoggedIn = useAppSelector(selectIsLoggedIn)
 

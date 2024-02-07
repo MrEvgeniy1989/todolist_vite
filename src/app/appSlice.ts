@@ -27,8 +27,7 @@ const slice = createSlice({
           if (
             action.type === todolistsThunks.addTodolist.rejected.type ||
             action.type === tasksThunks.addTask.rejected.type ||
-            action.type === authThunks.me.rejected.type ||
-            action.type === authThunks.login.rejected.type
+            action.type === authThunks.me.rejected.type
           ) {
             return
           }
