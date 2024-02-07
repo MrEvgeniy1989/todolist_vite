@@ -54,7 +54,11 @@ export const Todolist = ({ todolist }: Props) => {
         />
       </div>
       <Tasks disabled={todolist.entityStatus === 'loading'} tasks={tasks} />
-      <FilterButtons disabled={todolist.entityStatus === 'loading'} todolistId={todolist.id} />
+      <FilterButtons
+        disabled={todolist.entityStatus === 'loading'}
+        filter={todolist.filter}
+        todolistId={todolist.id}
+      />
     </div>
   )
 }

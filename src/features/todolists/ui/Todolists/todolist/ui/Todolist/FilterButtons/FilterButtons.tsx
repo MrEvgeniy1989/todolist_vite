@@ -7,10 +7,11 @@ import s from './FilterButtons.module.scss'
 
 type Props = {
   disabled: boolean
+  filter: FilterValues
   todolistId: string
 }
 
-export const FilterButtons = ({ disabled, todolistId }: Props) => {
+export const FilterButtons = ({ disabled, filter, todolistId }: Props) => {
   const dispatch = useAppDispatch()
 
   const changeFilter = (filter: FilterValues) => {
@@ -23,17 +24,27 @@ export const FilterButtons = ({ disabled, todolistId }: Props) => {
 
   return (
     <div className={s.filterButtons}>
-      <Button color={'success'} disabled={disabled} onClick={setFilterAll} variant={'contained'}>
+      <Button
+        color={'success'}
+        disabled={disabled}
+        onClick={setFilterAll}
+        variant={filter === 'all' ? 'contained' : 'outlined'}
+      >
         All
       </Button>
-      <Button color={'primary'} disabled={disabled} onClick={setFilterActive} variant={'contained'}>
+      <Button
+        color={'primary'}
+        disabled={disabled}
+        onClick={setFilterActive}
+        variant={filter === 'active' ? 'contained' : 'outlined'}
+      >
         Active
       </Button>
       <Button
         color={'secondary'}
         disabled={disabled}
         onClick={setFilterCompleted}
-        variant={'contained'}
+        variant={filter === 'completed' ? 'contained' : 'outlined'}
       >
         Completed
       </Button>
